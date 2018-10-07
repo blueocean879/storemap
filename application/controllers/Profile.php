@@ -26,7 +26,7 @@ class Profile extends UR_Controller {
 			$data['user'] = $this->user_model->get_user_detail();
 			$data['title'] = 'User Profile';
 			$data['view'] = 'user/profile/index';
-			$this->load->view('layout', $data);
+			$this->load->view('layout_user', $data);
 		}
 	}
 

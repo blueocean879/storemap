@@ -39,6 +39,7 @@
 
                   <p class="help-block">Example block-level help text here.</p>
                 </div>
+                
                 <div class="checkbox">
                   <label>
                     <input type="checkbox"> Check me out

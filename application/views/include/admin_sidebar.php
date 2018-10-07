@@ -65,7 +65,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             </ul>
           </li>
       </ul>
-      <ul class="sidebar-menu">
+     <!--  <ul class="sidebar-menu">
         <li id="joins" class="treeview">
             <a href="#">
               <i class="fa fa-i-cursor"></i> <span>Database Joins</span>
@@ -78,9 +78,23 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
               <li class=""><a href="<?= base_url('admin/joins/simple'); ?>"><i class="fa fa-circle-o"></i> Simple Join</a></li>
             </ul>
           </li>
-      </ul>
+      </ul> -->
 
       <ul class="sidebar-menu">
+        <li id="billings" class="treeview">
+            <a href="#">
+              <i class="fa fa-money"></i> <span>Billing System</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li id="billing_option" class=""><a href="<?= base_url('admin/billing'); ?>"><i class="fa fa-circle-o"></i> Billing </a></li>
+            </ul>
+          </li>
+      </ul> 
+
+     <!--  <ul class="sidebar-menu">
         <li id="invoices" class="treeview">
             <a href="#">
               <i class="fa fa-money"></i> <span>Invoiceing System</span>
@@ -93,9 +107,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
               <li class=""><a href="<?= base_url('admin/invoices/add'); ?>"><i class="fa fa-circle-o"></i> Add Invoice </a></li>
             </ul>
           </li>
-      </ul> 
+      </ul>  -->
 
-      <ul class="sidebar-menu">
+     <!--  <ul class="sidebar-menu">
         <li id="export" class="treeview">
             <a href="#">
               <i class="fa fa-life-ring"></i> <span>Backup & Export</span>
@@ -107,9 +121,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
               <li class=""><a href="<?= base_url('admin/export'); ?>"><i class="fa fa-circle-o"></i> Database Backup </a></li>
             </ul>
           </li>
-      </ul>  
+      </ul>   -->
 
-      <ul class="sidebar-menu">
+     <!--  <ul class="sidebar-menu">
         <li id="ui" class="treeview">
             <a href="#">
               <i class="fa fa-laptop"></i> <span>UI Components</span>
@@ -128,8 +142,8 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             </ul>
           </li>
       </ul> 
-      
-      <ul class="sidebar-menu">
+       -->
+     <!--  <ul class="sidebar-menu">
         <li id="forms" class="treeview">
             <a href="#">
               <i class="fa fa-edit"></i> <span>Forms</span>
@@ -144,8 +158,8 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             </ul>
         </li>
       </ul> 
-
-      <ul class="sidebar-menu">
+ -->
+    <!--   <ul class="sidebar-menu">
         <li id="charts" class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
@@ -161,9 +175,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
               <li id="inline"><a href="<?= base_url('admin/charts/inline'); ?>"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>
         </li>
-      </ul>
+      </ul> -->
       
-      <ul class="sidebar-menu">  
+    <!--   <ul class="sidebar-menu">  
         <li id="calender">
           <a href="<?= base_url('admin/calendar'); ?>">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
@@ -173,9 +187,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             </span>
           </a>
         </li>
-      </ul>
+      </ul> -->
         
-      <ul class="sidebar-menu">
+   <!--    <ul class="sidebar-menu">
         <li id="mailbox" class="treeview">
           <a href="">
             <i class="fa fa-envelope"></i> <span>Mailbox</span>
@@ -195,9 +209,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             <li id="read"><a href="<?= base_url('admin/mailbox/read_mail'); ?>">Read</a></li>
           </ul>
         </li>
-      </ul>
+      </ul> -->
 
-      <ul class="sidebar-menu">
+  <!--     <ul class="sidebar-menu">
         <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
@@ -232,7 +246,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
           </ul>
         </li>
       </ul>
-
+ -->
 
     </section>
     <!-- /.sidebar -->

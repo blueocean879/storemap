@@ -19,7 +19,21 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
      
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li id="profile" class="treeview">
+        <li id="user_dashboard" class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li id="user_dashboard1"><a href="<?= base_url('user/dashboard'); ?>"><i class="fa fa-circle-o"></i> Dashboard</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="sidebar-menu">
+        <li id="example" class="treeview">
           <a href="#">
             <i class="fa fa-user"></i> <span>Profile</span>
             <span class="pull-right-container">
@@ -33,6 +47,48 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
       </ul>
 
       <ul class="sidebar-menu">
+        <li id="store" class="treeview">
+          <a href="#">
+            <i class="fa fa-plus-square"></i> <span>Add a New Store Page</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li id="new_store"><a href="<?= base_url('store'); ?>"><i class="fa fa-circle-o"></i> Add New Store</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="sidebar-menu">
+        <li id="payment" class="treeview">
+          <a href="#">
+            <i class="fa fa-usd"></i> <span>Payment</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li id="billing"><a href="<?= base_url('payment'); ?>"><i class="fa fa-circle-o"></i> Billing</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="sidebar-menu">
+        <li id="map_setting" class="treeview">
+          <a href="#">
+            <i class="fa fa-map"></i> <span>Map Setting</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li id="map_setting_details"><a href="<?= base_url('map_setting'); ?>"><i class="fa fa-circle-o"></i> Settings</a></li>
+          </ul>
+        </li>
+      </ul>
+
+     <!--  <ul class="sidebar-menu">
         <li id="ui" class="treeview">
             <a href="#">
               <i class="fa fa-laptop"></i> <span>UI Components</span>
@@ -51,8 +107,8 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             </ul>
           </li>
       </ul> 
-      
-      <ul class="sidebar-menu">
+       -->
+   <!--    <ul class="sidebar-menu">
         <li id="forms" class="treeview">
             <a href="#">
               <i class="fa fa-edit"></i> <span>Forms</span>
@@ -66,9 +122,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
               <li id="editors"><a href="<?= base_url('forms/editors'); ?>"><i class="fa fa-circle-o"></i> Editors</a></li>
             </ul>
         </li>
-      </ul> 
+      </ul>  -->
       
-      <ul class="sidebar-menu">
+    <!--   <ul class="sidebar-menu">
         <li id="examples" class="treeview">
           <a href="#">
             <i class="fa fa-folder"></i> <span>Examples</span>
@@ -88,9 +144,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             <li id="pace"><a href="<?= base_url('example/pace'); ?>"><i class="fa fa-circle-o"></i> Pace Page</a></li>
           </ul>
         </li>
-      </ul>
+      </ul> -->
 
-      <ul class="sidebar-menu">
+    <!--   <ul class="sidebar-menu">
         <li id="charts" class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
@@ -106,9 +162,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
               <li id="inline"><a href="<?= base_url('charts/inline'); ?>"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>
         </li>
-      </ul>
+      </ul> -->
       
-      <ul class="sidebar-menu">  
+   <!--    <ul class="sidebar-menu">  
         <li id="calender">
           <a href="<?= base_url('calendar'); ?>">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
@@ -119,8 +175,8 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
           </a>
         </li>
       </ul>
-        
-      <ul class="sidebar-menu">
+         -->
+   <!--    <ul class="sidebar-menu">
         <li id="mailbox" class="treeview">
           <a href="">
             <i class="fa fa-envelope"></i> <span>Mailbox</span>
@@ -140,9 +196,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             <li id="read"><a href="<?= base_url('mailbox/read_mail'); ?>">Read</a></li>
           </ul>
         </li>
-      </ul>
+      </ul> -->
 
-      <ul class="sidebar-menu">
+    <!--   <ul class="sidebar-menu">
         <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
@@ -177,7 +233,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
           </ul>
         </li>
       </ul>
-
+ -->
 
     </section>
     <!-- /.sidebar -->

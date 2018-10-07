@@ -361,12 +361,13 @@ td.details table tr td, .dataTable tr:last-child {
 
 .box{
     border:0;
+   /* box-shadow: none;*/
 }
 
 .box-header {
     color: #fff;
     padding: 4px 0 0 15px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     background: #00bcd4;
 }
 .box-title{
@@ -374,6 +375,7 @@ td.details table tr td, .dataTable tr:last-child {
 }
 .box-body{
     padding: 20px;
+   /* padding-top: 5px;*/
 }
 .my-form-body{
     margin: 0 auto;

@@ -58,6 +58,31 @@
                   <input type="number" name="mobile_no" value="<?= $user['mobile_no']; ?>" class="form-control" id="mobile_no" placeholder="">
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="billing_email" class="col-sm-2 control-label">Billing Email</label>
+
+                <div class="col-sm-9">
+                  <input type="email" name="billing_email" value="<?= $user['billing_email']; ?>" class="form-control" id="billing_email" placeholder="">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="company_name" class="col-sm-2 control-label">Company Name</label>
+
+                <div class="col-sm-9">
+                  <input type="text" name="company_name" value="<?= $user['company_name']; ?>" class="form-control" id="company_name" placeholder="">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="company_address" class="col-sm-2 control-label">Company Address</label>
+
+                <div class="col-sm-9">
+                  <input type="text" name="company_address" value="<?= $user['company_address']; ?>" class="form-control" id="company_address" placeholder="">
+                </div>
+              </div>
+
               <div class="form-group">
                 <div class="col-md-11">
                   <input type="submit" name="submit" value="Update Profile" class="btn btn-info pull-right">

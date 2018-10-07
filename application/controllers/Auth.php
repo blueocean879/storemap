@@ -56,7 +56,7 @@
 								'is_user_login' => TRUE
 							);
 							$this->session->set_userdata($user_data);
-							redirect(base_url('profile'), 'refresh');
+							redirect(base_url('user/dashboard'), 'refresh');
 						}
 					}
 					else{

@@ -25,11 +25,28 @@
           <th>User Name</th>
           <th>Email</th>
           <th>Mobile No.</th>
-          <th>Group/Role</th>
           <th>Status</th>
+          <th>Billing</th>
+          <th></th>
           <th style="width: 150px;" class="text-right">Action</th>
         </tr>
         </thead>
+        <tbody>
+          <?php foreach($users as $user):?>
+          <tr>
+            <td><?= $user['username']; ?></td>
+            <td><?= $user['email']; ?></td>
+            <td><?= $user['mobile_no']; ?></td>
+            <td><?= ($user['is_active'] == 1)? 'Active':'Deactive';?></td>
+            <td><?= $user['billing_type']; ?></td>
+            <td><a title="Login as user" class="view btn btn-sm btn-info" target="_blank" href="<?= base_url('admin/users/proxy/'.$user['user_id']); ?>">Login as user</a></td>
+            <td>
+              <a title="Delete" class="delete btn btn-sm btn-danger pull-right '.$disabled.'" data-href="<?= base_url('admin/users/del/'.$user['user_id']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-o"></i></a>
+              <a title="Edit" class="update btn btn-sm btn-primary pull-right" href="<?= base_url('admin/users/edit/'.$user['user_id']); ?>"> <i class="fa fa-pencil-square-o"></i></a>
+            </td>
+          </tr>
+          <?php endforeach; ?> 
+        </tbody>
       </table>
     </div>
     <!-- /.box-body -->
@@ -64,7 +81,8 @@
   <script src="<?= base_url() ?>public/plugins/datatables/dataTables.bootstrap.min.js"></script>
   <script>
   //---------------------------------------------------
-  var table = $('#na_datatable').DataTable( {
+  var table = $('#na_datatable').DataTable();
+ /* var table = $('#na_datatable').DataTable( {
       "processing": true,
       "serverSide": true,
       "ajax": "<?=base_url('admin/users/datatable_json')?>",
@@ -77,7 +95,7 @@
         { "targets": 4, "name": "is_admin", 'searchable':true, 'orderable':true},
         { "targets": 5, "name": "Action", 'searchable':false, 'orderable':false,'width':'100px'}
       ]
-    });
+    });*/
   </script>
   
   <script type="text/javascript">

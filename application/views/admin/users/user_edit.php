@@ -62,6 +62,7 @@
                   <input type="email" name="email" value="<?= $user['email']; ?>" class="form-control" id="email" placeholder="">
                 </div>
               </div>
+              
               <div class="form-group">
                 <label for="mobile_no" class="col-sm-2 control-label">Mobile No</label>
 
@@ -69,6 +70,15 @@
                   <input type="number" name="mobile_no" value="<?= $user['mobile_no']; ?>" class="form-control" id="mobile_no" placeholder="">
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">Password</label>
+
+                <div class="col-sm-9">
+                  <input type="text" name="password"  class="form-control" id="password" placeholder="">
+                </div>
+              </div>
+
               <div class="form-group">
                 <label for="role" class="col-sm-2 control-label">Select Status</label>
 
@@ -80,6 +90,23 @@
                   </select>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="role" class="col-sm-2 control-label">Select Billing Plan</label>
+
+                <div class="col-sm-9">
+                  <select name="billing_plan_id" class="form-control">
+                    <option value="">Select Plan</option>
+                    <option value="1" <?= ($user['billing_plan_id'] == 1)?'selected': '' ?>>Monthly Micro</option>
+                    <option value="2" <?= ($user['billing_plan_id'] == 2)?'selected': '' ?>>Monthly Pro</option>
+                    <option value="3" <?= ($user['billing_plan_id'] == 3)?'selected': '' ?>>Monthly Premium</option>
+                    <option value="4" <?= ($user['billing_plan_id'] == 4)?'selected': '' ?>>Annual Micro</option>
+                    <option value="5" <?= ($user['billing_plan_id'] == 5)?'selected': '' ?>>Annual Pro</option>
+                    <option value="6" <?= ($user['billing_plan_id'] == 6)?'selected': '' ?>>Annual Premium</option>
+                  </select>
+                </div>
+              </div>
+
              <div class="form-group">
                 <label for="role" class="col-sm-2 control-label">Select Group</label>
 

@@ -9,7 +9,7 @@
 		//---------------------------------------------------
 		// get all users for server-side datatable processing (ajax based)
 		public function get_all_users(){
-			$wh =array();
+			/*$wh =array();
 			$SQL ='SELECT * FROM ci_users';
 			$wh[] = " is_admin = 0";
 			if(count($wh)>0)
@@ -20,7 +20,14 @@
 			else
 			{
 				return $this->datatable->LoadJson($SQL);
-			}
+			}*/
+
+			$this->db->select('ci_users.id as user_id, ci_users.*, ci_billing.*,');
+			$this->db->join('ci_billing', 'ci_billing.id = ci_users.billing_plan_id', 'left');
+
+			$query  = $this->db->get('ci_users');
+        	$result = $query->result_array();
+        	return $result;
 		}
 
 		//---------------------------------------------------

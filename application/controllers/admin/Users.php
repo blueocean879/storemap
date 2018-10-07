@@ -9,6 +9,7 @@
 
 		public function index(){
 			$data['view'] = 'admin/users/user_list';
+			$data['users'] = $this->user_model->get_all_users();
 			$this->load->view('layout', $data);
 		}
 		
@@ -24,7 +25,9 @@
 					$row['email'],
 					$row['mobile_no'],
 					'<span class="btn btn-info btn-flat btn-xs" title="status">'.getGroupyName($row['role']).'<span>',	// get Group name by ID (getGroupyName() is a helper function)
-					'<span class="btn btn-success btn-flat btn-xs" title="status">'.$status.'<span>',				
+					'<span class="btn btn-success btn-flat btn-xs" title="status">'.$status.'<span>',	
+					$row['billing_plan_id'],
+					'<a title="Login as user" class="view btn btn-sm btn-info" target="_blank" href="'.base_url('admin/users/proxy/'.$row['id']).'">Login as user</a>',			
 					'<a title="Delete" class="delete btn btn-sm btn-danger pull-right '.$disabled.'" data-href="'.base_url('admin/users/del/'.$row['id']).'" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-o"></i></a>
 					 <a title="Edit" class="update btn btn-sm btn-primary pull-right" href="'.base_url('admin/users/edit/'.$row['id']).'"> <i class="fa fa-pencil-square-o"></i></a>
 					 <a title="View" class="view btn btn-sm btn-info pull-right" href="'.base_url('admin/users/edit/'.$row['id']).'"> <i class="fa fa-eye"></i></a>'
@@ -32,6 +35,22 @@
 	        }
 			$records['data']=$data;
 	        echo json_encode($records);						   
+		}
+
+		public function proxy($user_id){
+			$current_user  = $this->user_model->get_user_by_id($user_id);
+			if($this->session->has_userdata('is_admin_login')){
+				$user_data = array(
+					'user_id' => $user_id,
+					'username' => $current_user['username'],
+					'is_user_login' => TRUE
+				);
+				$this->session->set_userdata($user_data);
+				redirect(base_url('user/dashboard'), 'refresh');
+			}
+			
+			$this->session->set_flashdata('errormessage', 'Invalid user.');
+			redirect(base_url('admin/users'));
 		}
 
 		public function add(){
@@ -99,11 +118,16 @@
 						'lastname' => $this->input->post('lastname'),
 						'email' => $this->input->post('email'),
 						'mobile_no' => $this->input->post('mobile_no'),
-						'password' =>  password_hash($this->input->post('password'), PASSWORD_BCRYPT),
 						'role' => $this->input->post('group'),
 						'is_active' => $this->input->post('status'),
+						'billing_plan_id' => $this->input->post('billing_plan_id'),
 						'updated_at' => date('Y-m-d : h:m:s'),
 					);
+
+					if($this->input->post('password') != ""){
+						$data['password'] = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
+					}
+
 					$data = $this->security->xss_clean($data);
 					$result = $this->user_model->edit_user($data, $id);
 					if($result){
