@@ -5,6 +5,7 @@ class Store extends UR_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('store_model', 'store_model');
+		$this->load->model('mapsetting_model', 'mapsetting_model');
 	}
 	
 	public function index(){
@@ -37,8 +38,12 @@ class Store extends UR_Controller {
 
 	public function edit($store_id){
 		$store = $this->store_model->getStore($store_id);
+		$user_id = $this->session->userdata('user_id');
+		$mapsetting = $this->mapsetting_model->getMapSetting($user_id);
+
 		$data  = array(
 			'store_detail' => $store,
+			'category'     => $mapsetting['custom_categories'],
 			'view'         => 'store/store_edit'
 		);
 	

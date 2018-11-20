@@ -69,6 +69,11 @@
                 </div>
 
                 <div class="form-group">
+                  <label class="text control-label" for="store_hours"> Store Hours</label>
+                  <input type="text" class="form-control" id="store_hours"  value="<?= $store_detail->store_hours; ?>" name="store_hours" placeholder="">
+                </div>
+
+                <div class="form-group">
                   <label class="text control-label" for="store_custom_field_1"> Custom Field 1</label>
                   <input type="text" class="form-control" id="store_custom_field_1"  value="<?= $store_detail->store_custom_field_1; ?>" name="store_custom_field_1" placeholder="">
                 </div>
@@ -85,12 +90,30 @@
 
                 <div class="form-group">
                   <label class="text control-label" for="store_custom_marker_image"> Custom Marker Image</label>
-                  <textarea class="form-control" rows="3"  placeholder="Enter ..." name="store_custom_marker_image" value="<?= $store_detail->store_custom_marker_image; ?>"></textarea>
+                  <input class="form-control" rows="3"  placeholder="Enter ..." name="store_custom_marker_image" value="<?= $store_detail->store_custom_marker_image; ?>">
                 </div>
 
-                <div class="form-group">
+            <!--     <div class="form-group">
                   <label class="text control-label" for="store_category"> Search Filters / Categories</label>
                   <textarea class="form-control" rows="3" placeholder="Enter ..." name="store_category"><?= $store_detail->store_category; ?></textarea>
+                </div> -->
+
+                <div class="form-group">
+                    <label class="text control-label" for="store_category"> Search Filters / Categories</label>
+                    <br/>
+                    <select style="width:200px;" class="store_category form-control"  multiple>
+                      <?php $items = explode(",", $category); ?>
+                      <?php foreach($items as $item){ ?>
+                          <?php if(strpos($store_detail->store_category, $item) !== false) { ?>
+                            <option value="<?= $item; ?>" selected><?= $item; ?></option>
+                          <?php } else { ?>
+                             <option value="<?= $item; ?>"><?= $item; ?></option>
+                          <?php } ?>
+                      <?php } ?>
+                    </select>
+                    <span>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</span>
+                    <input type="hidden" name="store_category" id="store_category" value="<?= $store_detail->store_category; ?>" >
+
                 </div>
                 
               </div>
@@ -112,6 +135,11 @@
   $(function () {
     //Initialize Select2 Elements
     $(".select2").select2();
+
+    $('.store_category').change(function(){
+      var categories = $(this).val();
+      $('#store_category').val(categories.join());
+    });
 
     $('#hide_store').click(function(){
          if($(this).is(':checked')){

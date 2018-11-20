@@ -45,8 +45,8 @@ class Payment extends UR_Controller {
 		    
 		    //set api key
 		    $stripe = array(
-		      "secret_key"      => "sk_test_q63lOUjx2XEfULMv6iVNBnop",
-		      "publishable_key" => "pk_test_Fjz1TMdPEKTOWydvSod0HmbF"
+		      "secret_key"      => 'sk_test_fyjnPgb1Zib2XtOUKFrBTfrc',
+		      "publishable_key" => 'pk_test_cFdGhW5sDWhHOv1gl0N4Ip8o',
 		    );
 		    
 		    \Stripe\Stripe::setApiKey($stripe['secret_key']);

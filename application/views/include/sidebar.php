@@ -1,92 +1,22 @@
-<?php 
-$cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);  
-?>  
+<?php
+$cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
+?>
 
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<?= base_url() ?>public/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p><?= ucwords($this->session->userdata('name')); ?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-     
+
+
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li id="user_dashboard" class="treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li id="user_dashboard1"><a href="<?= base_url('user/dashboard'); ?>"><i class="fa fa-circle-o"></i> Dashboard</a></li>
-          </ul>
-        </li>
+        <li id="user_dashboard1"><a href="<?= base_url('user/dashboard'); ?>"><ion-icon name="pin"></ion-icon> Manage Locations</a></li>
+        <li id="new_store"><a href="<?= base_url('store'); ?>"><ion-icon name="add-circle"></ion-icon> Add Stores</a></li>
+        <li id="map_setting_details"><a href="<?= base_url('mapsetting'); ?>"><ion-icon name="map"></ion-icon> Map Settings</a></li>
+        <li id="billing"><a href="<?= base_url('payment'); ?>"><ion-icon name="card"></ion-icon> Billing</a></li>
       </ul>
 
-      <ul class="sidebar-menu">
-        <li id="example" class="treeview">
-          <a href="#">
-            <i class="fa fa-user"></i> <span>Profile</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li id="profile"><a href="<?= base_url('profile'); ?>"><i class="fa fa-circle-o"></i> profile</a></li>
-          </ul>
-        </li>
-      </ul>
-
-      <ul class="sidebar-menu">
-        <li id="store" class="treeview">
-          <a href="#">
-            <i class="fa fa-plus-square"></i> <span>Add a New Store Page</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li id="new_store"><a href="<?= base_url('store'); ?>"><i class="fa fa-circle-o"></i> Add New Store</a></li>
-          </ul>
-        </li>
-      </ul>
-
-      <ul class="sidebar-menu">
-        <li id="payment" class="treeview">
-          <a href="#">
-            <i class="fa fa-usd"></i> <span>Payment</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li id="billing"><a href="<?= base_url('payment'); ?>"><i class="fa fa-circle-o"></i> Billing</a></li>
-          </ul>
-        </li>
-      </ul>
-
-      <ul class="sidebar-menu">
-        <li id="map_setting" class="treeview">
-          <a href="#">
-            <i class="fa fa-map"></i> <span>Map Setting</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li id="map_setting_details"><a href="<?= base_url('map_setting'); ?>"><i class="fa fa-circle-o"></i> Settings</a></li>
-          </ul>
-        </li>
-      </ul>
 
      <!--  <ul class="sidebar-menu">
         <li id="ui" class="treeview">
@@ -106,7 +36,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
               <li id="modals"><a href="<?= base_url('ui/modals'); ?>"><i class="fa fa-circle-o"></i> Modals</a></li>
             </ul>
           </li>
-      </ul> 
+      </ul>
        -->
    <!--    <ul class="sidebar-menu">
         <li id="forms" class="treeview">
@@ -123,7 +53,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             </ul>
         </li>
       </ul>  -->
-      
+
     <!--   <ul class="sidebar-menu">
         <li id="examples" class="treeview">
           <a href="#">
@@ -163,8 +93,8 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
           </ul>
         </li>
       </ul> -->
-      
-   <!--    <ul class="sidebar-menu">  
+
+   <!--    <ul class="sidebar-menu">
         <li id="calender">
           <a href="<?= base_url('calendar'); ?>">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
@@ -239,7 +169,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
     <!-- /.sidebar -->
   </aside>
 
-  
+
 <script>
   $("#<?= $cur_tab ?>").addClass('active');
 </script>

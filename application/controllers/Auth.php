@@ -1,9 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+    require_once (APPPATH.'libraries/Mandrill.php');
+
 	class Auth extends CI_Controller {
 		public function __construct(){
 			parent::__construct();
 			$this->load->library('mailer');
 			$this->load->model('auth_model', 'auth_model');
+			$this->load->library('form_validation');
 		}
 		//--------------------------------------------------------------
 		public function index(){
@@ -16,13 +19,13 @@
 				redirect('profile');
 			}
 			else{
-				redirect('auth/login');
+				redirect('home');
 			}
 		}
 		//--------------------------------------------------------------
 		public function login(){
 			if($this->input->post('submit')){
-				$this->form_validation->set_rules('username', 'Username', 'trim|required');
+				$this->form_validation->set_rules('email', 'Email', 'trim|required');
 				$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 				if ($this->form_validation->run() == FALSE) {
@@ -30,7 +33,8 @@
 				}
 				else {
 					$data = array(
-					'username' => $this->input->post('username'),
+					/*'username' => $this->input->post('username'),*/
+					'email' => $this->input->post('email'),
 					'password' => $this->input->post('password')
 					);
 					$result = $this->auth_model->login($data);
@@ -72,59 +76,155 @@
 
 		//-------------------------------------------------------------------------
 		public function register(){
-			if($this->input->post('submit')){
-				$this->form_validation->set_rules('username', 'Username', 'trim|required');
+			if($this->input->post('agree')){
+				/*$this->form_validation->set_rules('username', 'Username', 'trim|required');*/
 				$this->form_validation->set_rules('firstname', 'Firstname', 'trim|required');
 				$this->form_validation->set_rules('lastname', 'Lastname', 'trim|required');
-				$this->form_validation->set_rules('email', 'Email', 'trim|valid_email|is_unique[ci_users.email]|required');
+				$this->form_validation->set_rules('email', 'Email', 'trim|valid_email|callback_finduser');
 				$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-				$this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
+			//	$this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
 
 				if ($this->form_validation->run() == FALSE) {
 					$data['title'] = 'Create an Account';
 					$this->load->view('auth/register', $data);
 				}
 				else{
-					$data = array(
-						'username' => $this->input->post('username'),
-						'firstname' => $this->input->post('firstname'),
-						'lastname' => $this->input->post('lastname'),
-						'email' => $this->input->post('email'),
-						'password' =>  password_hash($this->input->post('password'), PASSWORD_BCRYPT),
-						'is_active' => 1,
-						'is_verify' => 0,
-						'token' => md5(rand(0,1000)),    
-						'last_ip' => '',
-						'created_at' => date('Y-m-d : h:m:s'),
-						'updated_at' => date('Y-m-d : h:m:s'),
-					);
-					$data = $this->security->xss_clean($data);
-					$result = $this->auth_model->register($data);
-					if($result){
-						//sending welcome email to user
-						$name = $data['firstname'].' '.$data['lastname'];
-						$email_verification_link = base_url('auth/verify/').'/'.$data['token'];
-						$body = $this->mailer->Tpl_Registration($name, $email_verification_link);
-						$this->load->helper('email_helper');
-						$to = $data['email'];
-						$subject = 'Activate your account';
-						$message =  $body ;
-						$email = sendEmail($to, $subject, $message, $file = '' , $cc = '');
-						$email = true;
-						if($email){
-							$this->session->set_flashdata('success', 'Your Account has been made, please verify it by clicking the activation link that has been send to your email.');	
-							redirect(base_url('auth/login'));
-						}	
+					
+					if(!empty($this->input->post('stripeToken'))){
+						//include Stripe PHP library
+					    require_once APPPATH."third_party/stripe/init.php";
+					    
+					    //set api key
+					    $stripe = array(
+					      "secret_key"      =>  $this->config->item('secret_key'),
+					      "publishable_key" =>  $this->config->item('publishable_key'),
+					    );
+					  
+					    \Stripe\Stripe::setApiKey($stripe['secret_key']);
+			    		// Create a Customer
+						$customer = \Stripe\Customer::create(array(
+						    "email"  => $this->input->post('email'),
+						    "source" => $this->input->post('stripeToken'),
+						));
+
+						$plan = \Stripe\Plan::retrieve("monthly-advanced");
+						$planJson = $plan->jsonSerialize();
+
+						if($planJson['active'] == 0){
+							$plan = \Stripe\Plan::create([
+							  "amount" => 5700,
+							  "interval" => "month",
+							  "product" => [
+							    "name" => "Monthly Advanced"
+							  ],
+							  "currency" => "usd",
+							  "id" => "monthly-advanced"
+							]);
+						}
 						else{
-							echo 'Email Error';
+							$subscription = \Stripe\Subscription::create(array(
+							    "customer" => $customer->id,
+							    "plan" => "monthly-advanced",
+							    "trial_period_days" => 14,
+							));
+						}
+
+						$data = array(
+							'username' => $this->input->post('firstname')."_".$this->input->post('lastname'),
+							'firstname' => $this->input->post('firstname'),
+							'lastname' => $this->input->post('lastname'),
+							'email' => $this->input->post('email'),
+							'password' =>  password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+							'is_active' => 1,
+							'is_verify' => 0,
+							'token' => md5(rand(0,1000)),    
+							'last_ip' => '',
+							'created_at' => date('Y-m-d : h:m:s'),
+							'updated_at' => date('Y-m-d : h:m:s'),
+							'customerId' => $customer->id,
+						);
+
+						$data = $this->security->xss_clean($data);
+						$result = $this->auth_model->register($data);
+						if($result){
+							//sending welcome email to user
+							$name = $data['firstname'].' '.$data['lastname'];
+							$email_verification_link = base_url('auth/verify/').'/'.$data['token'];
+
+							$mandrill = new Mandrill($this->config->item('mandrill_api_key'));
+							$template_name = 'email-verification-account';
+
+							$message = array(
+						        'subject' => 'Account Verification',
+						        'from_email' => 'hello@getmappr.com',
+						        'from_name' => 'Mappr',
+						        'to' => array(array('email' => $data['email'])),
+						        'merge_vars' => array(
+						        	array(
+								        'rcpt' => $data['email'],
+								        'vars' =>
+								        array(
+								            array(
+							                	'name' => 'clientName',
+							                	'content' => $data['firstname']." ".$data['lastname']
+								            ),
+								            array(
+								            	'name' => 'email_verification_link',
+								            	'content' => $email_verification_link
+								            ),
+								            
+							        ))
+						    ));
+
+							$template_content = array(
+							    array(
+							    	'name' => 'clientName',
+								    'content' => $data['firstname']." ".$data['lastname']
+					            ),
+					            array(
+					            	'name' => 'email_verification_link',
+					            	'content' => $email_verification_link
+					            )
+							);
+
+							try{
+						  		$result = $mandrill->messages->sendTemplate($template_name, $template_content, $message);
+						  		if($result){
+						  			$this->session->set_flashdata('success', 'Your Account has been made, please verify it by clicking the activation link that has been send to your email.');	
+									redirect(base_url('auth/login'));
+						  		}
+						  	}
+						  	catch(Mandrill_Error $e){
+						  		// Mandrill errors are thrown as exceptions
+							    echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
+							    // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+							    throw $e;
+						  	}
+						
 						}
 					}
+					else{
+						$data['title'] = 'Create an Account';
+						$this->load->view('auth/register', $data);
+					}
+					
 				}
 			}
 			else{
 				$data['title'] = 'Create an Account';
 				$this->load->view('auth/register', $data);
 			}
+		}
+
+		function finduser(){
+			$this->load->model('user_model', 'user_model');
+			$email_address = $this->input->post('email');
+			$user          = $this->user_model->findUserEmailAdress($email_address);
+			if($user){
+				$this->session->set_flashdata('error', 'The same email exists!');
+				return FALSE;
+			}
+			return TRUE;
 		}
 
 		//----------------------------------------------------------	
@@ -222,7 +322,7 @@
 			
 		public function logout(){
 			$this->session->sess_destroy();
-			redirect(base_url('auth/login'), 'refresh');
+			redirect(base_url(), 'refresh');
 		}
 			
 	}  // end class

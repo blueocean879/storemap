@@ -3,12 +3,12 @@
     <div class="col-md-12">
       <div class="box box-body">
         <div class="col-md-6">
-          <h4><i class="fa fa-pencil"></i> &nbsp; Update user</h4>
+          <h4>Profile</h4>
         </div>
         <div class="col-md-6 text-right">
-          <a href="<?= base_url('profile/change_pwd'); ?>" class="btn btn-success"><i class="fa fa-list"></i> Change Password</a>
+          <a href="<?= base_url('profile/change_pwd'); ?>" class="btn btn-primary">Change Password</a>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
         <!-- /.box-header -->
         <!-- form start -->
         <div class="box-body my-form-body">
-            <?php echo form_open(base_url('profile'), 'class="form-horizontal"' )?> 
+            <?php echo form_open(base_url('profile'), 'class="form-horizontal"' )?>
               <div class="form-group">
                 <label for="username" class="col-sm-2 control-label">User Name</label>
 
@@ -93,9 +93,9 @@
           <!-- /.box-body -->
       </div>
     </div>
-  </div>  
+  </div>
 
-</section> 
+</section>
 
 
 

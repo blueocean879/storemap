@@ -62,7 +62,10 @@
 				'default_search_radius',
 				'show_store_nearest',
 				'enable_autocomplete',
-				'search_location'
+				'search_location',
+				'start_lat',
+				'start_lng',
+				'custom_categories',
 			);
 		}
 	}

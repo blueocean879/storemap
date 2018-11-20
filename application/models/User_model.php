@@ -14,6 +14,16 @@
 			$this->db->update('ci_users', $data);
 			return true;
 		}
+
+		public function findUserEmailAdress($email_address){
+			$this->db->where('ci_users.email', $email_address);
+			$query = $this->db->get('ci_users');
+			if ($query->num_rows() > 0)
+			{
+				return $query->row();
+			}
+			return FALSE;
+		}
 		//--------------------------------------------------------------------
 		public function change_pwd($data, $id){
 			$this->db->where('id', $id);

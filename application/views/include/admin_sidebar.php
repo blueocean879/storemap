@@ -94,7 +94,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
           </li>
       </ul> 
 
-     <!--  <ul class="sidebar-menu">
+      <ul class="sidebar-menu">
         <li id="invoices" class="treeview">
             <a href="#">
               <i class="fa fa-money"></i> <span>Invoiceing System</span>
@@ -107,7 +107,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
               <li class=""><a href="<?= base_url('admin/invoices/add'); ?>"><i class="fa fa-circle-o"></i> Add Invoice </a></li>
             </ul>
           </li>
-      </ul>  -->
+      </ul> 
 
      <!--  <ul class="sidebar-menu">
         <li id="export" class="treeview">
@@ -123,7 +123,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
           </li>
       </ul>   -->
 
-     <!--  <ul class="sidebar-menu">
+      <ul class="sidebar-menu">
         <li id="ui" class="treeview">
             <a href="#">
               <i class="fa fa-laptop"></i> <span>UI Components</span>
@@ -142,8 +142,8 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             </ul>
           </li>
       </ul> 
-       -->
-     <!--  <ul class="sidebar-menu">
+      
+      <ul class="sidebar-menu">
         <li id="forms" class="treeview">
             <a href="#">
               <i class="fa fa-edit"></i> <span>Forms</span>
@@ -158,7 +158,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
             </ul>
         </li>
       </ul> 
- -->
+ 
     <!--   <ul class="sidebar-menu">
         <li id="charts" class="treeview">
             <a href="#">

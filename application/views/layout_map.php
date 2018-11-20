@@ -8,6 +8,7 @@
 			<section id="container">
 				<section id="main-content">
 					<div class="content-wrapper" style="min-height: 394px; padding:15px;">
+						<input type="hidden" id="user_id" value="<?= $user_id; ?>">
 						<!-- page start-->
 						<?php $this->load->view($view);?>
 						<!-- page end-->

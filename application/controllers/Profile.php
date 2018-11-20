@@ -14,6 +14,9 @@ class Profile extends UR_Controller {
 				'email' => $this->input->post('email'),
 				'mobile_no' => $this->input->post('mobile_no'),
 				'updated_at' => date('Y-m-d : h:m:s'),
+				'billing_email' => $this->input->post('billing_email'),
+				'company_name' => $this->input->post('company_name'),
+				'company_address' => $this->input->post('company_address'),
 			);
 			$data = $this->security->xss_clean($data);
 			$result = $this->user_model->update_user($data);

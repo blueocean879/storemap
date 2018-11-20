@@ -6,6 +6,7 @@
 			parent::__construct();
 			$this->load->model('admin/billing_model', 'billing_model');
 		}
+		
 		public function index(){
 
 			$data['billings'] = $this->billing_model->get_all_billings();

@@ -25,9 +25,20 @@ ob_start();
 |
 */
 
-$url = "http://".$_SERVER['HTTP_HOST']. str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+/*$url = "http://".$_SERVER['HTTP_HOST']. str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 
-$config['base_url'] = $url;
+$config['base_url'] = $url;*/
+$root=(isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
+$root.= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+$config['base_url'] = $root;
+
+$config['secret_key'] = 'sk_test_fyjnPgb1Zib2XtOUKFrBTfrc';
+$config['publishable_key'] = 'pk_test_cFdGhW5sDWhHOv1gl0N4Ip8o';
+
+/*
+	Mailchimp
+*/
+$config['mandrill_api_key'] = 'wVJmqmNdxBw4PEpur-Qahw';
 
 /*
 |--------------------------------------------------------------------------

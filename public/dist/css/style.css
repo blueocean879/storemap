@@ -1,23 +1,90 @@
 
 /* Import fonts */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 body {
     color: #3e3e3e;
     background: #f1f2f7;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
-    font-size:13px;
+    font-size:16px;
+}
+
+ion-icon {
+    vertical-align: middle;
+    padding: 0 4px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {font-weight:bold}
+
+.content h1, h2 {
+    margin-bottom: 30px;
+}
+
+.billing-box {padding:32px;}
+span.plan-price {
+    display: block;
+    font-size: 32px;
+    font-weight:bold;
+}
+span.subheading {
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 14px;
+    color: #777;
+    font-size:14px;
+}
+
+.feature-disabled {
+  text-decoration: line-through;
+  color: #BBB;
+}
+.span60 {width:60px;}
+
+form.update-card {margin:16px 0;}
+
+.change-card, .update-account {margin-bottom:8px;}
+
+.billing-pricing-table th {vertical-align:middle !important;}
+
+.badge {padding:4px 8px;}
+.badge-primary {background:#8161ff;}
+.account-action {margin-bottom:24px;}
+.billing-box ul.nav.nav-pills {
+    margin-bottom: 24px;
+}
+
+.nav-pills>li>a {border-radius:6px; border:none;}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{
+ background:#333 !important;
+ border:none !important;
+}
+
+hr.divider {
+    margin: 30px 0;
+}
+
+.billing-pricing-table th {
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
 }
 
 /* ------------ login Form ---------------------- */
  #login-form{
-        background: url('../img/login_bg.jpg'); 
+        background: #2D4EE2;
         background-size: cover;
     }
     #login-form .login-title{
-        padding-top: 80px;
+        margin: 90px 0 30px 0;
         color: #fff;
     }
     #login-form .login-title span{
@@ -28,10 +95,11 @@ body {
     }
     #login-form .form-box {
         position: relative;
-        background: #fffc;
+        background: #fff;
         max-width: 375px;
         width: 100%;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+        border-radius:6px;
         padding: 30px;
     }
 
@@ -72,7 +140,7 @@ body {
         -moz-border-radius: 0;
         -webkit-border-radius: 0;
         min-height: 40px;
-        
+
     }
 
 
@@ -192,7 +260,7 @@ body {
     background: transparent;
     border: none;
     color: #34495e;
-    font-family: "Lato", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     margin: 0px;
     padding: 0 0 0 5px;
@@ -339,7 +407,7 @@ td.details table tr td, .dataTable tr:last-child {
 }
 
 
-.full-width .nav > li > a:hover, .full-width .nav  li.active a, .full-width .nav li.dropdown a:hover , .full-width .nav li.dropdown.open a:focus, .full-width .nav .open > a, .full-width  .nav .open > a:hover, .full-width  .nav .open > a:focus{
+.full-width .nav > li > a:hover, .full-width .nav  li.active a, .full-width .nav li.dropdown a:hover , .full-width .nav li.dropdown.open a:focus, .full-width .nav .open > a, .full-width  .nav .open > a:hover, .full-width  .nav .open > a:focus {
     background-color: #F77B6F;
     text-decoration: none;
     color: #fff;
@@ -374,7 +442,7 @@ td.details table tr td, .dataTable tr:last-child {
     padding: 10px;
 }
 .box-body{
-    padding: 20px;
+  padding: 24px 32px;
    /* padding-top: 5px;*/
 }
 .my-form-body{

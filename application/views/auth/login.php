@@ -48,7 +48,8 @@
                         </div>
                         <?php echo form_open(base_url('auth/login'), 'class="login-form" '); ?>
                             <div class="input-group">
-                                <input type="text" name="username" id="name" class="form-control" placeholder="Username" >
+                              <!--   <input type="text" name="username" id="name" class="form-control" placeholder="Username" > -->
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Email" >
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" >
                                 <div class="row">
                                   <div class="col-xs-12 text-right">
@@ -56,7 +57,7 @@
                                   </div>
                               </div>
                                 <input type="submit" name="submit" id="submit" class="form-control" value="Login">
-                                <p class="text-center"><a href="<?= base_url('auth/register'); ?>">Don't have an account? Sign Up</a></p>
+                                <p class="text-center"><a href="<?= base_url('sign-up'); ?>">Don't have an account? Sign Up</a></p>
                             </div>
                         <?php echo form_close(); ?>
                     </div>

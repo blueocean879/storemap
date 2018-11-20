@@ -73,6 +73,7 @@
 				'store_url',
 				'store_description',
 				'store_promomessage',
+				'store_hours',
 				'store_custom_field_1',
 				'store_custom_field_2',
 				'store_custom_field_3',
